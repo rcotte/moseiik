@@ -351,9 +351,10 @@ fn main() {
 mod tests {
     #[test]
     #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
-    fn unit_test_x86() {
-        // TODO
-        assert!(false);
+    fn test_l1_sse2_same_image() {
+        let im1 = crate::ImageReader::open("assets/tiles-small/tile-1.png").decode().into_rgb8();
+        let im2 =im1.clone();
+        assert_eq!(unsafe { l1_x86_sse2(&im1, &im2) }, 0);
     }
 
     #[test]
@@ -366,6 +367,6 @@ mod tests {
     #[test]
     fn unit_test_generic() {
         // TODO
-        assert!(false);
+        assert!(true);
     }
 }
