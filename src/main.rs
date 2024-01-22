@@ -349,11 +349,17 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+use super::*;
+use image::{
+    imageops::{resize, FilterType::Nearest},
+    io::Reader as ImageReader,
+    GenericImage, GenericImageView, RgbImage,
+};
     #[test]
     #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
     fn test_l1_sse2_same_image() {
-        let im1 = crate::ImageReader::open("assets/tiles-small/tile-1.png").decode().into_rgb8();
-        let im2 =im1.clone();
+        let im1= ImageReader::open("./assets/tiles-small/tile-1.png").unwrap().decode().unwrap().to_rgb8();
+        let im2 =ImageReader::open("./assets/tiles-small/tile-1.png").unwrap().decode().unwrap().to_rgb8();
         assert_eq!(unsafe { l1_x86_sse2(&im1, &im2) }, 0);
     }
 
