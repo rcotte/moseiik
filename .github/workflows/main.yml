@@ -10,6 +10,7 @@ jobs:
     # S'exécute sur une machine Ubuntu
     runs-on: ubuntu-latest
     
+    continue-on-error: true #permet de continuer de run les tests même si une archi fail
     # Stratégie de matrice pour exécuter le job sur différentes architectures
     strategy:
       matrix:
@@ -36,7 +37,7 @@ jobs:
         docker build -t img --platform ${{ matrix.arch }} .  # build de l'image Docker 
         echo "start run on ${{ matrix.arch }}"  # Message de début de l'exécution 
         docker run --rm --platform ${{ matrix.arch }} img   # Exécution des tests sur arm64
-        continue-on-error: true #permet de continuer de run les tests même si une archi fail
+        
 
 
 #docker build -t img_one_arm --platform linux/arm64
