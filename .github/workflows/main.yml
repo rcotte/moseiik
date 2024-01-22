@@ -38,14 +38,3 @@ jobs:
         echo "start run on ${{ matrix.arch }}"  # Message de début de l'exécution 
         docker run --rm --platform ${{ matrix.arch }} img   # Exécution des tests sur arm64
         
-
-
-#docker build -t img_one_arm --platform linux/arm64
-#docker build -t img_one --platform linux/amd64
-
-#docker run  --rm --platform linux/amd64 img_one --image "assets/target-small.png" --tiles "assets/tiles-small" 
-#docker run  --rm --platform linux/arm64 img_one --image "assets/target-small.png" --tiles "assets/tiles-small" 
-
-#question : comment recuperer notre dockerfile 
-#           comment fonctionne QEMU pour github action 
-#           on a un if pour l'archi masi comment on simule l'archi 
