@@ -23,6 +23,7 @@ jobs:
       uses: actions/checkout@v4
     # Étape pour configurer QEMU en fonction de la matrice spécifiée
     - name: Set up QEMU
+      if: matrix.arch == 'arm64'
     # Utilisation de l'action docker/setup-qemu-action version 1
       uses: docker/setup-qemu-action@v3
     # Configuration des plates-formes QEMU en fonction de la matrice (arm64 ou amd64)
