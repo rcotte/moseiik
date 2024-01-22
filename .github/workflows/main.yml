@@ -13,7 +13,9 @@ jobs:
     # Stratégie de matrice pour exécuter le job sur différentes architectures
     strategy:
       matrix:
-        arch: [arm64, amd64] 
+        arch: 
+          - linux/amd64
+          - linux/arm64
 
     steps:
     # Étape pour récupérer le code du dépôt
@@ -25,7 +27,7 @@ jobs:
       uses: docker/setup-qemu-action@v1
     # Configuration des plates-formes QEMU en fonction de la matrice (arm64 ou amd64)
       with:
-      platforms: ${{ matrix.arch }}
+        platforms: ${{ matrix.arch }}
     # Étape pour exécuter les tests sur l'architecture arm64
     - name: Run test on arm
       if: matrix.arch == 'arm64'
