@@ -30,7 +30,7 @@ jobs:
         platforms: ${{ matrix.arch }}
     # Étape pour exécuter les tests sur l'architecture arm64
     - name: Run test on arm
-      if: matrix.arch == 'arm64'
+      if: matrix.arch == 'linux/arm64'
       run: |
         echo "start build on arm64"  # Message de début du build sur arm64
         docker build -t img_one_arm --platform linux/arm64 .  # build de l'image Docker pour arm64
@@ -39,7 +39,7 @@ jobs:
 
     # Étape pour exécuter les tests sur l'architecture amd64
     - name: Run test on amd
-      if: matrix.arch == 'amd64'
+      if: matrix.arch == 'linux/amd64'
       run: |
         echo "start build on amd64"  # Message de début de la build sur amd64
         docker build -t img_one --platform linux/amd64 .  # build de l'image Docker pour amd64
