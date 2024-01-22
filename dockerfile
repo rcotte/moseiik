@@ -7,7 +7,9 @@ WORKDIR /app
 
 # Cloner le projet depuis GitHub, il faut modifier l'url pour correspondre au bon repo
 RUN git clone https://github.com/rcotte/moseiik.git .
-
+RUN cd assets
+RUN wget "https://filesender.renater.fr/download.php?token=178558c6-7155-4dca-9ecf-76cbebeb422e&files_ids=33679270" -O images.zip
+RUN unzip images.zip
 # on build l'apps qu'une seul fois
 RUN cargo build --release
 
