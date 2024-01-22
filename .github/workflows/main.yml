@@ -28,23 +28,14 @@ jobs:
     # Configuration des plates-formes QEMU en fonction de la matrice (arm64 ou amd64)
       with:
         platforms: ${{ matrix.arch }}
-    # Étape pour exécuter les tests sur l'architecture arm64
-    - name: Run test on arm
-      if: matrix.arch == 'linux/arm64'
+    # Étape pour exécuter les tests pour chaque architecture
+    - name: Run test on ${{ matrix.arch }}
       run: |
-        echo "start build on arm64"  # Message de début du build sur arm64
-        docker build -t img_one_arm --platform linux/arm64 .  # build de l'image Docker pour arm64
-        echo "start run on arm64"  # Message de début de l'exécution sur arm64
-        docker run --rm --platform linux/arm64 img_one_arm --image "assets/target-small.png" --tiles "assets/tiles-small"  # Exécution des tests sur arm64
+        echo "start build on ${{ matrix.arch }}"  # Message de début du build 
+        docker build -t img_one_arm --platform ${{ matrix.arch }} .  # build de l'image Docker 
+        echo "start run on ${{ matrix.arch }}"  # Message de début de l'exécution 
+        docker run --rm --platform ${{ matrix.arch }} img_one_arm --image "assets/target-small.png" --tiles "assets/tiles-small"  # Exécution des tests sur arm64
 
-    # Étape pour exécuter les tests sur l'architecture amd64
-    - name: Run test on amd
-      if: matrix.arch == 'linux/amd64'
-      run: |
-        echo "start build on amd64"  # Message de début de la build sur amd64
-        docker build -t img_one --platform linux/amd64 .  # build de l'image Docker pour amd64
-        echo "start build on amd64"  # Message de début de l'exécution sur amd64
-        docker run --rm --platform linux/amd64 img_one --image "assets/target-small.png" --tiles "assets/tiles-small"  # Exécution des tests sur amd64
 
 
 #docker build -t img_one_arm --platform linux/arm64
