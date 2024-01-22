@@ -6,7 +6,7 @@ WORKDIR /app
 
 
 # Cloner le projet depuis GitHub, il faut modifier l'url pour correspondre au bon repo
-RUN git clone https://github.com/cortowc/moseiik.git .
+RUN git clone https://github.com/rcotte/moseiik.git .
 
 # on build l'apps qu'une seul fois
 RUN cargo build --release
