@@ -24,7 +24,7 @@ jobs:
     # Étape pour configurer QEMU en fonction de la matrice spécifiée
     - name: Set up QEMU
     # Utilisation de l'action docker/setup-qemu-action version 1
-      uses: docker/setup-qemu-action@v1
+      uses: docker/setup-qemu-action@v3
     # Configuration des plates-formes QEMU en fonction de la matrice (arm64 ou amd64)
       with:
         platforms: ${{ matrix.arch }}
