@@ -367,7 +367,7 @@ use image::{
     fn test_l1_sse2_diff_image() {
         let im1= ImageReader::open("./assets/tiles-small/tile-1.png").unwrap().decode().unwrap().to_rgb8();
         let im2 =ImageReader::open("./assets/tile-full-black.png").unwrap().decode().unwrap().to_rgb8();
-        assert_eq!(unsafe { l1_x86_sse2(&im1, &im2) }, 5724*3); //différence avec une image noir
+        assert_eq!(unsafe { l1_x86_sse2(&im1, &im2) }, 5724*3); //différence avec une image noir = à la somme des pixels de l'image de base soit 5724 et on multiplie par trois parce que on a converti en rgb
     }
     #[test]
     #[cfg(target_arch = "aarch64")]
@@ -375,7 +375,7 @@ use image::{
         // TODO
         let im1= ImageReader::open("./assets/tiles-small/tile-1.png").unwrap().decode().unwrap().to_rgb8();
         let im2 =ImageReader::open("./assets/tiles-small/tile-1.png").unwrap().decode().unwrap().to_rgb8();
-        assert_eq!(unsafe { l1_neon(&im1, &im2) }, 0);
+        assert_eq!(unsafe { l1_neon(&im1, &im2) }, 0);//la difference de la même image est nulle
 
     }
     #[test]
@@ -384,7 +384,7 @@ use image::{
         // TODO
         let im1= ImageReader::open("./assets/tiles-small/tile-1.png").unwrap().decode().unwrap().to_rgb8();
         let im2 =ImageReader::open("./assets/tile-full-black.png").unwrap().decode().unwrap().to_rgb8();
-        assert_eq!(unsafe { l1_neon(&im1, &im2) }, 5724*3);
+        assert_eq!(unsafe { l1_neon(&im1, &im2) }, 5724*3);//différence avec une image noir = à la somme des pixels de l'image de base soit 5724 et on multiplie par trois parce que on a converti en rgb
 
     }
 
@@ -398,7 +398,7 @@ use image::{
     fn test_unit_generic_diff_image() {
         let im1= ImageReader::open("./assets/tiles-small/tile-1.png").unwrap().decode().unwrap().to_rgb8();
         let im2 =ImageReader::open("./assets/tile-full-black.png").unwrap().decode().unwrap().to_rgb8();
-        assert_eq!(unsafe { l1_generic(&im1, &im2) }, 5724*3);
+        assert_eq!(unsafe { l1_generic(&im1, &im2) }, 5724*3);//différence avec une image noir = à la somme des pixels de l'image de base soit 5724 et on multiplie par trois parce que on a converti en rgb
     }
 
     #[test]
@@ -425,7 +425,7 @@ use image::{
         };
 
         let res=prepare_target("./assets/tiles-small/tile-4.png",myscale,&t).unwrap();
-        assert!(res.height()==5 && res.width()==5);
+        assert!(res.height()==5 && res.width()==5); // true si la target est d'une taille cohérente
     }
 
 }
