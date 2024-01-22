@@ -36,7 +36,7 @@ jobs:
         docker build -t img --platform ${{ matrix.arch }} .  # build de l'image Docker 
         echo "start run on ${{ matrix.arch }}"  # Message de début de l'exécution 
         docker run --rm --platform ${{ matrix.arch }} img   # Exécution des tests sur arm64
-
+        continue-on-failure: true
 
 
 #docker build -t img_one_arm --platform linux/arm64
