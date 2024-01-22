@@ -32,9 +32,9 @@ jobs:
     - name: Run test on ${{ matrix.arch }}
       run: |
         echo "start build on ${{ matrix.arch }}"  # Message de début du build 
-        docker build -t img_one_arm --platform ${{ matrix.arch }} .  # build de l'image Docker 
+        docker build -t img --platform ${{ matrix.arch }} .  # build de l'image Docker 
         echo "start run on ${{ matrix.arch }}"  # Message de début de l'exécution 
-        docker run --rm --platform ${{ matrix.arch }} img_one_arm --image "assets/target-small.png" --tiles "assets/tiles-small"  # Exécution des tests sur arm64
+        docker run --rm --platform ${{ matrix.arch }} img   # Exécution des tests sur arm64
 
 
 
